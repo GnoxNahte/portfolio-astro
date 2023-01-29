@@ -37,10 +37,14 @@ function GetTagTypeClass(tag: string): string
 <div class="tag card">
     <p>Tags:</p>
     <ul>
-        {tagsValue.map(tag => (
-            //<li class={GetTagTypeClass(tag)}>{tag.split('.')[1]}</li>
-            <li class={GetTagTypeClass(tag)}>{tag + (GetTagTypeClass(tag) == "unknownTag" ? " - Unknown Tag, Report Pls" : "")}</li>
-        ))}
+        {tagsValue.map(tag => {
+            const tagClass = GetTagTypeClass(tag);
+            // - Explanation of tag.replace(/([A-Z])/g, " $1"):
+            //   Changes "pascal case" to "spaced separated" string
+            //   E.g. PascalCaseExample -> Pascal Case Example
+            // - If the tag class is unknown, add a phrase to tell the user that the tag is unknown
+            return <li class={tagClass}>{tag.replace(/([A-Z])/g, " $1") + (tagClass == "unknownTag" ? " - Unknown Tag, Report Pls" : "")}</li>
+        })}
     </ul>
 </div>
   
