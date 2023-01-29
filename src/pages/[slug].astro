@@ -1,8 +1,8 @@
 ---
 
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro";
 
-import TagDisplay from "../../components/TagDisplay.astro";
+import TagDisplay from "../components/TagDisplay.astro";
 
 export async function getStaticPaths() {
     const projects = await Astro.glob('../../projects/*.md');
